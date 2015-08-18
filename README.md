@@ -1,5 +1,5 @@
 # XEMsend
-Automated multisignature initiator
+Automated multisignature initiator XEM Cryptocurrency
 
 # Features
 - Password encrypted configuration (aes-128-ecb)
