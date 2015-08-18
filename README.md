@@ -10,7 +10,7 @@ Automated multisignature initiator XEM Cryptocurrency
 - Max dayli amount
 - Transaction details
 - MySQL support
-- 
+
 # How to
 
 You must have a local NCC running connected to a local or remote NIS.<br>
