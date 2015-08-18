@@ -4,7 +4,7 @@ Automated multisignature initiator for XEM Cryptocurrency
 # Features
 - Password encrypted configuration (aes-128-ecb)
 - Batch transactions
-- Main balance watcher
+- Multisig account balance watcher
 - Timer
 - Max amount per tx, program stops if amount exceeded (meaning something goes wrong)
 - Max dayli amount
