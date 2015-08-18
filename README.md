@@ -56,8 +56,6 @@ If still not working, you need to install Express, Secure-conf and MySQL:
 
 <b>As the wallet is exposed you shouldn't store any funds on it !</b>
 
-To insure maximum security, you can deploy as many XEMsign as you need cosignatures but preferably on different computers in different locations. And do not use those computers for surfing the net.
-
 # Work in progress
 - Fill SENDaccess.json with random datas and auto delete.
 
