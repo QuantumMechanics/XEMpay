@@ -23,7 +23,7 @@ To connect your NCC to a remote NIS:<br>
 You need NodeJs.<br>
 Be sure you have NEM.js from <a href="https://github.com/NewEconomyMovement/nodejs2nem" target="_blank">nodejs2nem</a> inside your folder.
 
-XEMsend is the transaction initiator. It's the first cosignatory who ask for XEMsign signatures. XEMsend pull addresses meeting requirements from MySQL database and initiate batch signatures requests.
+XEMsend is the transaction initiator. It's the first cosignatory who ask for <a href="https://github.com/QuantumMechanics/XEMsign" target="_blank"><b>XEMsign</b></a> signatures. XEMsend pull addresses meeting requirements from MySQL database and initiate batch signatures requests.
 
 You need to insert correct informations inside SENDaccess.json:<br>
 All addresses must be in the "NAMOAVHFVPJ6FP32YP2GCM64WSRMKXA5KKYWWHPY" format. NO "-".
