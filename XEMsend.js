@@ -87,6 +87,33 @@ var time = 0;
 
 setInterval(function() {
 
+			//We want to check for funds
+			var fundsCheck = {
+			account: _multisigAccount
+			};
+		
+			var fundsBalance;
+
+		//output a pretty formated JSON text
+		var toPrettyJson2 = function(fundsCheck) {
+		var h = JSON.stringify(fundsCheck,null,4);
+		//console.log(h);
+
+		//parsing Json
+		obj2 = JSON.parse(h);
+
+		//Get multisig account balance
+		fundsBalance = obj2.balance;
+		};	
+
+		//request multisig account balance
+			nem.nccPost('/account/find',fundsCheck
+			,function(err) {
+			console.log(err);
+			}
+			,toPrettyJson2
+			);	
+
 	//If 24h => reset dailyAmount
 	if (time == _dailyTimer * 60 * 1000)
 	{
@@ -111,7 +138,7 @@ setInterval(function() {
 	});
 	
 	//Select addresses not claimed with balance == _amount (/1000000 because the _amount value is in the smallest possible NEM fraction, that means that 1000000 means 1.000000 NEM.)
-	connection.query('SELECT * from XEMfaucet WHERE balance=? AND claimed=0', [_amount/1000000], function(err, rows, fields) {
+	connection.query('SELECT * from XEMfaucet WHERE balance=? AND claimed=0 LIMIT 10', [_amount/1000000], function(err, rows, fields) {
 
 	if (rows.length == 0)
 	{
@@ -171,34 +198,7 @@ setInterval(function() {
 		else if (dayliAmount < _maxDayliAmount)
 		{
 
-			//We want to check for funds
-			var fundsCheck = {
-			account: _multisigAccount
-			};
-		
-			var fundsBalance;
-
-		//output a pretty formated JSON text
-		var toPrettyJson2 = function(fundsCheck) {
-		var h = JSON.stringify(fundsCheck,null,4);
-		//console.log(h);
-
-		//parsing Json
-		obj2 = JSON.parse(h);
-
-		//Get multisig account balance
-		fundsBalance = obj2.balance;
-		};	
-
-		//request multisig account balance
-			nem.nccPost('/account/find',fundsCheck
-			,function(err) {
-			console.log(err);
-			}
-			,toPrettyJson2
-			);	
-
-		if (fundsBalance < 500000000)
+		if (fundsBalance < 1000000000)
 		{
 			console.log("\n");
 			console.log("INSUFFICIENT FUNDS");
