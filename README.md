@@ -33,7 +33,7 @@ All addresses must be in the "NAMOAVHFVPJ6FP32YP2GCM64WSRMKXA5KKYWWHPY" format. 
 - <b>dayliTimer</b>: Timer before dayliAmount reset to 0 in minutes<br>
 - <b>maxAmount</b>: Maximal XEM amount per tx, in case of a bigger transaction, the program stop.<br>
 - <b>maxDayliAmount</b>: Maximal amount per days.<br>
-- 
+
 Inside XEMsend.js, on line 142 & 223, you need to set db query accordignly to your table name and column name. 
 Query on line 142 select all balances with the amount set in SENDaccess.
 Query on line 223 update all balances & reset them to 0 after transaction process.
