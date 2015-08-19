@@ -62,6 +62,7 @@ If still not working, you need to install Express, Secure-conf and MySQL:
 
 # Work in progress
 - Fill SENDaccess.json with random datas and auto delete.
+- Remove useless code.
 
 <b>BTC</b>: 1BRuxYZ3ohDJkfEWKVMWAiYrAYjwNSaPJs<br>
 <b>XEM</b>: NAMOAV-HFVPJ6-FP32YP-2GCM64-WSRMKX-A5KKYW-WHPY
