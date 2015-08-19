@@ -199,8 +199,8 @@ setInterval(function() {
 		else if (dayliAmount < _maxDayliAmount)
 		{
 
-		//As I did not figured out yet how to correctly use nodejs for case by case check, the min fund balance in order to send the batch tx must be (((amount per tx)*10)+300) to cover fees
-		if (fundsBalance < 1300000000)
+		//The min fund balance in order to send the batch tx must be (((amount per tx)*10)+300) to cover fees
+		if (fundsBalance < 1300000000) //1300 XEM for 10 people in a batch.
 		{
 			console.log("\n");
 			console.log("INSUFFICIENT FUNDS");
