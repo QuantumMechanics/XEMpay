@@ -199,8 +199,8 @@ setInterval(function() {
 		else if (dayliAmount < _maxDayliAmount)
 		{
 
-		//The min fund balance in order to send the batch tx must be (((amount per tx)*10)+300) to cover fees
-		if (fundsBalance < 1300000000) //1300 XEM for 10 people in a batch.
+		//The min fund balance in order to send the batch tx must be (((amount per tx)*batch size)+300) to cover fees
+		if (fundsBalance < 1300000000) //1300 XEM for 10 people in a batch with 100 XEM/tx.
 		{
 			console.log("\n");
 			console.log("INSUFFICIENT FUNDS");
