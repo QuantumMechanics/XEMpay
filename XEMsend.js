@@ -138,6 +138,7 @@ setInterval(function() {
 	});
 	
 	//Select addresses not claimed with balance == _amount (/1000000 because the _amount value is in the smallest possible NEM fraction, that means that 1000000 means 1.000000 NEM.)
+	//Limited to 10 Transaction here
 	connection.query('SELECT * from XEMfaucet WHERE balance=? AND claimed=0 LIMIT 10', [_amount/1000000], function(err, rows, fields) {
 
 	if (rows.length == 0)
@@ -198,6 +199,7 @@ setInterval(function() {
 		else if (dayliAmount < _maxDayliAmount)
 		{
 
+		//As I did not figured out yet how to correctly use nodejs for case by case check, the min fund balance in order to send the batch tx must be ((amount per tx)*10)
 		if (fundsBalance < 1000000000)
 		{
 			console.log("\n");
