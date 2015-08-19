@@ -139,7 +139,7 @@ setInterval(function() {
 	
 	//Select addresses not claimed with balance == _amount (/1000000 because the _amount value is in the smallest possible NEM fraction, that means that 1000000 means 1.000000 NEM.)
 	//Limited to 10 Transaction here
-	connection.query('SELECT * from yourTable WHERE column=? AND yourBoolean=0 LIMIT 10', [_amount/1000000], function(err, rows, fields) {
+	connection.query('SELECT * from yourTable WHERE columnBalance=? LIMIT 10', [_amount/1000000], function(err, rows, fields) {
 
 	if (rows.length == 0)
 	{
@@ -220,7 +220,7 @@ setInterval(function() {
 		dayliAmount += balance[i];
 		time += _timer * 60 * 1000;
 		//We set addresses to claimed
-		connection.query('UPDATE yourTable SET yourBoolean=1 WHERE columnAddress= ?', [address[i]], function (err, result) {
+		connection.query('UPDATE yourTable SET columBalance=0 WHERE columnAddress= ?', [address[i]], function (err, result) {
 		    if (err) throw err;
 		  });
 			}//endelse check funds
