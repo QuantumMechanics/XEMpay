@@ -3,7 +3,7 @@ Automated multisignature initiator for XEM Cryptocurrency
 
 # Features
 - Password encrypted configuration (aes-128-ecb)
-- Batch transactions
+- Batch transactions with limiter
 - Multisig account balance watcher
 - Timer
 - Max amount per tx, program stops if amount exceeded (meaning something goes wrong)
