@@ -119,31 +119,32 @@ setInterval(function() {
 	{
 	dailyAmount = 0;
 	}
-
+	
 	//DB connection
 	var mysql      = require('mysql');
-	var connection = mysql.createConnection({
+	var pool = mysql.createPool({
 	  host     : _DBhost,
 	  user     : _DBuser,
 	  password : _DBpassword,
 	  database : _database
 	});
 
-	connection.connect(function(err){
-	if(!err) {
-	    console.log("Database is connected ... \n\n");  
-	} else {
-	    console.log("Error connecting database ... \n\n");  
-	}
-	});
-	
-	//Select addresses not claimed with balance == _amount (/1000000 because the _amount value is in the smallest possible NEM fraction, that means that 1000000 means 1.000000 NEM.)
-	//Limited to 10 Transaction here
-	connection.query('SELECT * from yourTable WHERE columnBalance=? LIMIT 10', [_amount/1000000], function(err, rows, fields) {
+	pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          console.log('Error connecting database...');	
+          return;
+        } 
 
+	console.log('connected as id ' + connection.threadId);
+	
+	//Select addresses with balance == _amount (/1000000 because the _amount value is in the smallest possible NEM fraction, that means that 1000000 means 1.000000 NEM.)
+	connection.query('SELECT * from yourTable WHERE columnBalance=? LIMIT 10', [_amount/1000000], function(err, rows, fields) {
+	//connection.release();
 	if (rows.length == 0)
 	{
 	     console.log('No transaction to initiate, waiting...');	
+		 console.log("\n");
 		time += _timer * 60 * 1000; 
 	} else{	
 		var i;
@@ -199,8 +200,7 @@ setInterval(function() {
 		else if (dayliAmount < _maxDayliAmount)
 		{
 
-		//The min fund balance in order to send the batch tx must be (((amount per tx)*batch size)+(batch size*26)) to cover minimum fees
-		if (fundsBalance < 1300000000) //1300 XEM for 10 people in a batch with 100 XEM/tx.
+		if (fundsBalance < rows.length*(_amount+_fee+_multisigFee))
 		{
 			console.log("\n");
 			console.log("INSUFFICIENT FUNDS");
@@ -219,8 +219,8 @@ setInterval(function() {
 		);
 		dayliAmount += balance[i];
 		time += _timer * 60 * 1000;
-		//We set addresses to claimed
-		connection.query('UPDATE yourTable SET columBalance=0 WHERE columnAddress= ?', [address[i]], function (err, result) {
+		//We reset addresses balance
+		connection.query('UPDATE yourTable SET columBalance=0 WHERE columnAddress=?', [address[i]], function (err, result) {
 		    if (err) throw err;
 		  });
 			}//endelse check funds
@@ -239,10 +239,17 @@ setInterval(function() {
 		console.log("Total amount: ");
 		console.log(dayliAmount);
 		console.log("Done, waiting...");
-		connection.end();
+		console.log("\n");
+		connection.release();
 
 }
 });
+
+connection.on('error', function(err) {      
+              console.log('Error connecting database...');
+              return;    
+        });
+  });
 
 }, the_interval);
 });
