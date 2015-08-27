@@ -23,7 +23,7 @@ To connect your NCC to a remote NIS:<br>
 You need NodeJs.<br>
 Be sure you have NEM.js from <a href="https://github.com/NewEconomyMovement/nodejs2nem" target="_blank">nodejs2nem</a> inside your folder.
 
-XEMsend is the transaction initiator. It's the first cosignatory who ask for <a href="https://github.com/QuantumMechanics/XEMsign" target="_blank"><b>XEMsign</b></a> signatures. XEMsend pull addresses meeting requirements from MySQL database and initiate batch signatures requests.
+XEMpay is the transaction initiator. It's the first cosignatory who ask for <a href="https://github.com/QuantumMechanics/XEMsign" target="_blank"><b>XEMsign</b></a> signatures. XEMpay pull addresses meeting requirements from MySQL database and initiate batch signatures requests.
 
 You need to insert correct informations inside SENDaccess.json:<br>
 All addresses must be in the "NAMOAVHFVPJ6FP32YP2GCM64WSRMKXA5KKYWWHPY" format. NO "-".
@@ -34,13 +34,13 @@ All addresses must be in the "NAMOAVHFVPJ6FP32YP2GCM64WSRMKXA5KKYWWHPY" format. 
 - <b>maxAmount</b>: Maximal XEM amount per tx, in case of a bigger transaction, the program stop.<br>
 - <b>maxDayliAmount</b>: Maximal amount per days.<br>
 
-Inside XEMsend.js, on line 142 & 223, you need to set db query accordignly to your table name and column name.<br>
+Inside XEMpay.js, on line 142 & 223, you need to set db query accordignly to your table name and column name.<br>
 Query on line 142 select all balances with the amount set in SENDaccess.<br>
 Query on line 223 update all balances & reset them to 0 after transaction process.
 
-Next, Run XEMsend.js using:
+Next, Run XEMpay.js using:
 
-nodejs pathTo/XEMsend.js
+nodejs pathTo/XEMpay.js
 
 Then follow instructions.
 
