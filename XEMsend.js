@@ -1,6 +1,6 @@
 console.log("\n");
 console.log("==============================================================");
-console.log("======== XEMsend - Automated Multisignature Initiator ========");
+console.log("======== XEMpay - Automated Multisignature Initiator ========");
 console.log("==============================================================");
 console.log("\n");
 var fs = require('fs');
@@ -23,14 +23,14 @@ console.log("\n");
 console.log("encrypt %s to %s complete.", f, ef);
 console.log("encrypted contents are %s", ec);
 console.log("\n");
-console.log("NOW DELETE SENDaccess.json, EMPTY YOUR BIN AND RESTART XEMsend");
+console.log("NOW DELETE SENDaccess.json, EMPTY YOUR BIN AND RESTART XEMpay");
 console.log("\n");
 }
 }
 );
 }
 else{
-console.log("Enter your password to start XEMsend:");
+console.log("Enter your password to start XEMpay:");
 var SecureConf = require('secure-conf');
 var sconf = new SecureConf();
 var ef = "./SENDaccess.json.enc";
