@@ -1,4 +1,4 @@
-# XEMsend
+# XEMpay
 Automated multisignature initiator for XEM Cryptocurrency
 
 # Features
